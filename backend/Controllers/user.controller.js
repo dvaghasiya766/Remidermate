@@ -20,6 +20,7 @@ const getUsers = async (req, res, next) => {
 };
 
 const signup = async (req, res, nxt) => {
+  const { name, email, password } = req.body;
   const errs = validationResult(req);
 
   if (!errs.isEmpty()) {
@@ -29,9 +30,7 @@ const signup = async (req, res, nxt) => {
     );
   }
 
-  const { name, email, password } = req.body;
   let exsitingUser;
-
   try {
     exsitingUser = await User.findOne({ email: email });
   } catch (err) {
@@ -58,4 +57,32 @@ const signup = async (req, res, nxt) => {
   }
 };
 
-module.exports = { getUsers, signup };
+const login = async (req, res, nxt) => {
+  const { email, password } = req.body;
+  const errs = validationResult(req);
+
+  if (!errs.isEmpty()) {
+    return nxt(
+      new HttpError("Invalid data has beed passed! pleased check you data", 422)
+    );
+  }
+
+  let exsitingUser;
+  try {
+    exsitingUser = await User.findOne({ email: email });
+  } catch (err) {
+    return nxt(new HttpError("Logging in Failed, please try again..."), 500);
+  }
+
+  if (!exsitingUser || exsitingUser.password !== password) {
+    return nxt(
+      new HttpError("Invalid Credentials, could not log you in...", 401)
+    );
+  }
+
+  res.json({ message: "Logged in!" });
+};
+
+module.exports = { getUsers, signup, login }; // Export the functions to be used in the routes
+// Note: The getUserById function is commented out in the original code, so it is not included here.
+// If needed, it can be implemented similarly to the other functions, fetching a user by ID

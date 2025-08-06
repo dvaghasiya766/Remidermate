@@ -14,6 +14,15 @@ router.post(
   ],
   userController.signup
 ); // Define a route for user signup, validating the input data and using the signUp method from the user controller
+router.post(
+  "/login",
+  [
+    check("email").normalizeEmail().isEmail(),
+    check("password").not().isEmpty(),
+  ],
+  userController.login
+); // Define a route for user login, validating the input data and using the login method from the user controller
+// router.get("/:uid", userController.getUserById); // Define a route to get a user by ID, using the getUserById method from the user controller
 
 // Export the router to be used in the main application file
 module.exports = router;
