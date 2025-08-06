@@ -5,7 +5,8 @@ const mongoose = require("mongoose"); // Import Mongoose for MongoDB interaction
 require("dotenv").config(); // Load environment variables from a .env file into process.env
 
 // Import custom error class to handle HTTP-related errors
-const HttpError = require("./Model/http.error");
+const HttpError = require("./Models/http.error");
+const userRoutes = require("./Routes/user.route");
 
 // Create an instance of the Express application
 const app = express();
@@ -48,6 +49,11 @@ app.get("/api/data", (req, res, next) => {
     message: "Backend says hi!", // Return a simple message as JSON
   });
 });
+
+// Use the user routes defined in user.route.js
+app.use("/api/users", userRoutes); // Use the user routes defined in user.route.js
+// app.use("/api/followups", followUpsRoutes); // Use the user routes defined in user.route.js
+// app.use("/api/recivers", reciversRoutes); // Use the user routes defined in user.route.js
 
 // Middleware for handling routes that are not defined (404 errors)
 app.use((req, res, next) => {

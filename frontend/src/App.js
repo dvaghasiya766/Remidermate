@@ -9,7 +9,7 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("http://192.168.1.67:5000/api/data", {
+        const res = await fetch("http://192.168.1.67:5000/api/users", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

@@ -1,0 +1,18 @@
+Packages:
+    "axios": "^1.11.0" // For Fetching Data from API
+    "body-parser": "^2.2.0", // Parser Request Body into JSON
+    "cors": "^2.8.5", // CORS Configurations
+    "dotenv": "^17.2.1", // Access .env file
+    "express": "^5.1.0", // Making A Server
+    "express-validator": "^7.2.1", // Validations
+    "mongoose": "^8.17.0", // MongoDB Library
+    "uuid": "^11.1.0" // Unique User ID
+    "nodemon": "^2.0.22" // Development Tool restart server automatically when save code
+
+"Model":
+    "./Model/http.error.js" // Importing the custom error class
+        - Custom Error Class for HTTP Errors
+        - Handles HTTP status codes and messages
+        - Exports a function to create new errors
+        - Used for consistent error handling in the application
+
