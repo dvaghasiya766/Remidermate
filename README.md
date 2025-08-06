@@ -7,9 +7,7 @@ A full-stack reminder management application built with React and Node.js.
 ```
 Remidermate/
 ├── backend/                 # Node.js/Express API server
-│   ├── config/             # Configuration files
 │   ├── controllers/        # Route controllers
-│   ├── middleware/         # Custom middleware
 │   ├── models/            # Database models
 │   ├── routes/            # API routes
 │   ├── utils/             # Utility functions
