@@ -43,7 +43,7 @@ const initializeDBAndServer = async () => {
 initializeDBAndServer();
 
 // Define a test API route to check if backend is working
-app.get("/api/data", (req, res) => {
+app.get("/api/data", (req, res, next) => {
   res.json({
     message: "Backend says hi!", // Return a simple message as JSON
   });
