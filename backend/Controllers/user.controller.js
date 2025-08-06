@@ -83,6 +83,27 @@ const login = async (req, res, nxt) => {
   res.json({ message: "Logged in!" });
 };
 
-module.exports = { getUsers, signup, login }; // Export the functions to be used in the routes
+const getUserById = async (req, res, nxt) => {
+  const userId = req.params.uid;
+  let user;
+
+  try {
+    user = await User.findById(userId);
+  } catch (err) {
+    return nxt(
+      new HttpError("Something went wrong, could not find a user...", 500)
+    );
+  }
+
+  if (!user) {
+    return nxt(
+      new HttpError("Could not find a user for the provided id...", 404)
+    );
+  }
+
+  res.json({ user: user.toObject({ getters: true }) });
+};
+
+module.exports = { getUsers, signup, login, getUserById }; // Export the functions to be used in the routes
 // Note: The getUserById function is commented out in the original code, so it is not included here.
 // If needed, it can be implemented similarly to the other functions, fetching a user by ID
