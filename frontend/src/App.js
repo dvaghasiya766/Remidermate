@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 
 function App() {
-  const [data, setData] = useState({});
+  const [data, setData] = useState();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -16,9 +16,7 @@ function App() {
           },
         });
         const data = await res.json();
-
-        setData(data.data || "No data received");
-        // console.log("Data fetched successfully:", data.message);
+        setData(data.message || "No data received");
       } catch (error) {
         setData("Error fetching data");
         console.error("Error fetching data:", error);
@@ -32,10 +30,7 @@ function App() {
     <div className="App">
       <h1>Welcome to Remidermate</h1>
       <p>Your personal medication reminder app.</p>
-      <p>
-        {data.UserName} <br />
-        {data.Password}
-      </p>
+      <p>{data}</p>
     </div>
   );
 }
