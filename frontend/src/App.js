@@ -16,7 +16,20 @@ function App() {
           },
         });
         const data = await res.json();
-        setData(data.message || "No data received");
+        if (!res.ok) {
+          throw new Error(data.message || "Something went wrong!");
+        }
+
+        // data.users = [{}];
+
+        if (data.users) {
+          setData(
+            data.users.length > 0
+              ? `${data.users.length} users Founds`
+              : "No users found"
+          );
+          return;
+        }
       } catch (error) {
         setData("Error fetching data");
         console.error("Error fetching data:", error);

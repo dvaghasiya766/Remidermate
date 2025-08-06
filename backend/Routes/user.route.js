@@ -1,12 +1,9 @@
 const express = require("express"); // Import Express to create the server and handle routes
 
+const userController = require("../Controllers/user.controller"); // Import the user controller to handle user-related requests
+
 const router = express.Router(); // Create a new router instance
 
-router.get("/", (req, res, next) => {
-  res.json({
-    message: "User route is working!", // Return a simple message as JSON
-  });
-});
+router.get("/", userController.getUsers); // Define a route to get all users, using the getUsers method from the user controller
 
-// Export the router to be used in other files
 module.exports = router;

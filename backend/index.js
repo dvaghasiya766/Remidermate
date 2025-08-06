@@ -31,7 +31,7 @@ const initializeDBAndServer = async () => {
 
     // If connection is successful, start listening on port 5000
     app.listen(process.env.PORT, () => {
-      console.log(`Server running at http://localhost:/${process.env.PORT}`); // Log a message once the server is up
+      console.log(`Server running at http://localhost:${process.env.PORT}`); // Log a message once the server is up
     });
   } catch (err) {
     // If MongoDB connection fails, log the error and stop the process
